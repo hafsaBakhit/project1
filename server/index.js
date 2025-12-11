@@ -27,10 +27,12 @@ const upload = multer({ storage: storage });
 
 const connectString="mongodb+srv://admin:123admin@postitcluster.ay2cvjv.mongodb.net/postITDb?appName=PostITCluster";
 
-mongoose.connect(connectString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
+ongoose.connect(connectString, {
+  serverSelectionTimeoutMS: 8000, // مهم جداً ل Render
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log("MongoDB error:", err));
 
 //==========================================
 app.put(
